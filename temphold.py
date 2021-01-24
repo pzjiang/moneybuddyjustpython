@@ -8,9 +8,27 @@ from functools import partial
 from graphics import *
 
 
+def submit(username1, password1, access_token):
+    venmo = None;
+    try:
+        Client.get_access_token(username=username1, password=password1)
+    except:
+        print(username1)
+        print(password1)
+        return "F"
+
+    window = GraphWin("Analysis",1200,800)  
+    
+
+    
+    return
+
 
 
 def main():
+
+    access_token = ""
+    
     loginwindow = tk.Tk()
     loginwindow.title("Login Window")
     loginwindow.geometry("700x400")

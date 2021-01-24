@@ -8,7 +8,7 @@ from functools import partial
 from graphics import *
 
 def submit(username1, password1, access_token):
-    venmo = None
+    venmo1 = None
 
    
     try:
@@ -27,48 +27,54 @@ def submit(username1, password1, access_token):
 def main():
 
     access_token = ""
+    venmo = None
 
-    def submitTemp():
-        print(userinput.get())
-        print(passinput.get())
-        print("end test")
-        submit(userinput.get(),passinput.get(),access_token)
+    try:
 
-    loginwindow = tk.Tk()
-    loginwindow.title("Login Window")
-    loginwindow.geometry("700x400")
-    
-    username = tk.StringVar()
-    password = tk.StringVar()
+        def submitTemp():
+            print(userinput.get())
+            print(passinput.get())
+            print("end test")
+            submit(userinput.get(),passinput.get(),access_token)
 
-    welcomelabel = tk.Label(loginwindow, text="hello and welcome to money buddy!")
-    welcomelabel.config(font=("Consolas", 16))
-    welcomelabel.grid(column = 1, row = 1, sticky="NESW")
+        loginwindow = tk.Tk()
+        loginwindow.title("Login Window")
+        loginwindow.geometry("700x400")
+        
+        username = tk.StringVar()
+        password = tk.StringVar()
 
-    userlabel = tk.Label(loginwindow, text="Username:  ",width = 14)
-    userlabel.config(font=("Consolas",16))
-    userlabel.grid(column=1, row=2, sticky="w")
+        welcomelabel = tk.Label(loginwindow, text="hello and welcome to money buddy!")
+        welcomelabel.config(font=("Consolas", 16))
+        welcomelabel.grid(column = 1, row = 1, sticky="NESW")
 
-    userinput = tk.Entry(loginwindow, width = 20, textvariable = username, font=("Consolas",12))
-    userinput.grid(column=2, row=2, sticky="e")
+        userlabel = tk.Label(loginwindow, text="Username:  ",width = 14)
+        userlabel.config(font=("Consolas",16))
+        userlabel.grid(column=1, row=2, sticky="w")
 
-    passlabel = tk.Label(loginwindow, text = "Password:  ", width = 14)
-    passlabel.config(font=("Consolas", 16))
-    passlabel.grid(column=1, row = 3, sticky="nw")
-    
-    passinput = tk.Entry(loginwindow, width = 20, textvariable = password, font=("Consolas",12), show="*")
-    passinput.grid(column=2, row = 3, sticky="ne")
+        userinput = tk.Entry(loginwindow, width = 20, textvariable = username, font=("Consolas",12))
+        userinput.grid(column=2, row=2, sticky="e")
 
-    submitButton = tk.Button(loginwindow, text="login", command= submitTemp, width = 14)
-    submitButton.grid(column = 2, row = 4, sticky="ne")
-    
-    loginwindow.grid_rowconfigure(0, weight=1)
-    loginwindow.grid_rowconfigure(3, weight=1)
-    loginwindow.grid_columnconfigure(0, weight=1)
-    loginwindow.grid_columnconfigure(3, weight=1)
-    
+        passlabel = tk.Label(loginwindow, text = "Password:  ", width = 14)
+        passlabel.config(font=("Consolas", 16))
+        passlabel.grid(column=1, row = 3, sticky="nw")
+        
+        passinput = tk.Entry(loginwindow, width = 20, textvariable = password, font=("Consolas",12), show="*")
+        passinput.grid(column=2, row = 3, sticky="ne")
 
-    loginwindow.mainloop()
+        submitButton = tk.Button(loginwindow, text="login", command= submitTemp, width = 14)
+        submitButton.grid(column = 2, row = 4, sticky="ne")
+        
+        loginwindow.grid_rowconfigure(0, weight=1)
+        loginwindow.grid_rowconfigure(3, weight=1)
+        loginwindow.grid_columnconfigure(0, weight=1)
+        loginwindow.grid_columnconfigure(3, weight=1)
+        
+
+        loginwindow.mainloop()
+    except:
+        if venmo != None:
+            venmo.log_out("Bearer " + access_token)
 
 
 
