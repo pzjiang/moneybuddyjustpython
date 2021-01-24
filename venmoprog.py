@@ -9,6 +9,7 @@ from tkinter import messagebox
 from functools import partial
 from graphics import *
 import time
+import operator
 
 
 
@@ -89,6 +90,10 @@ def submit(username1, password1):
     print(total)
     print(relationdict)
 
+    sorteddict = sorted(relationdict.items(), key = operator.itemgetter(1))
+
+    print(sorteddict)
+
     #creating graphics window for venmo analysis
     window = GraphWin("Analysis",700,400)
 
@@ -103,25 +108,25 @@ def submit(username1, password1):
 
     time.sleep(1.5)
 
-    mostMoneyPaidPerson = Text(Point(350, 150), "You've been paying <insert person here> a whole lot recently! ")
+    mostMoneyPaidPerson = Text(Point(350, 150), "You've been paying "+sorteddict[0][0]+" a whole lot recently! ")
     mostMoneyPaidPerson.setSize(14)
     mostMoneyPaidPerson.draw(window)
 
     time.sleep(1.1)
 
-    mostMoneyPaid = Text(Point(350, 175), "Looks like you've paid them <insert amount here> :o ")
+    mostMoneyPaid = Text(Point(350, 175), "Looks like you've paid them $"+str(sorteddict[0][1] * (-1))+" :o ")
     mostMoneyPaid.setSize(14)
     mostMoneyPaid.draw(window)
 
     time.sleep(1.1)
 
-    mostMoneyRecievedPerson = Text(Point(350, 200), "On the other hand, <insert person here> has been paying you a ton. ")
+    mostMoneyRecievedPerson = Text(Point(350, 200), "On the other hand, "+sorteddict[len(sorteddict)-1][0]+" has been paying you a ton. ")
     mostMoneyRecievedPerson.setSize(14)
     mostMoneyRecievedPerson.draw(window)
 
     time.sleep(1.1)
 
-    mostMoneyRecieved = Text(Point(350, 225), "A whole <insert amount here> dollars! ")
+    mostMoneyRecieved = Text(Point(350, 225), "A whole "+str(sorteddict[len(sorteddict)-1][1])+" dollars! ")
     mostMoneyRecieved.setSize(14)
     mostMoneyRecieved.draw(window)
     
