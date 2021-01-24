@@ -8,35 +8,42 @@ from tkinter import messagebox
 from functools import partial
 from graphics import *
 
-def submit(username1, password1, access_token):
+total=[0]
+relationdict = {}
+
+def submit(username1, password1):
     venmo1 = None
 
-    
+    token = ""
 
    
     try:
-        venmo1 = Client.get_access_token(username=username1, password=password1)
+        token = Client.get_access_token(username=username1, password=password1)
+        venmo1 = Client(access_token = token)
     except:
         messagebox.showerror(title="Login Error", message="Invalid credentials, please try again :(")
-        return "F"
+        return None, "F"
 
-    total = 0
-    relationdict = {}
 
-    used = venmo1.user.get_my_profile();
+    
+    try:
+        used = venmo1.user.get_my_profile()
+    except:
+        print("error on used")
+        print(type(used))
+        
     valueMul = 1
 
+    f = open("saving.txt", "w")
+    f.write("")
+    f.close()
     
     def callback(transactions_list):
         for transaction in transactions_list:
-            valueMul = 1
-            if transaction.payment_type != "pay":
-                valueMul = -1
-            if transaction.actor.username == used.username:
-                total -= transaction.amount * valueMul
-                relationdict[transaction.target.username] -= transaction.amount * valueMul
-            else:
-                 print ("no")
+            f = open("saving.txt", "a")
+            f.write(transaction.payment_type + " " + str(transaction.amount) + " " + transaction.target.username + " " + transaction.actor.username + "\n")
+            f.close() 
+            
 
     """
     print("type below");
@@ -44,7 +51,12 @@ def submit(username1, password1, access_token):
     print("==-==-=-=-=-=");
     """
 
-    venmo1.user.get_user_transactions(user=used,callback=callback,limit=1000)
+    transactions_list = venmo1.user.get_user_transactions(user=used,callback=callback,limit=1000)
+    
+
+    
+    print(total)
+    print(relationdict)
 
     window = GraphWin("Analysis",1200,800)
 
@@ -53,16 +65,17 @@ def submit(username1, password1, access_token):
     
 
     
-    return venmo1
+    return venmo1, token
 
 #315ee5d2cec5ee32a91d4537f9ccd36a93c528be698e87cc7e4cb606f2f022db
 def main():
 
-    access_token = ""
+    access_token = "hi"
     venmo = None
 
+
     def submitTemp():
-        venmo = submit(userinput.get(),passinput.get(),access_token)
+        venmo,access_token = submit(userinput.get(),passinput.get())
 
 
     def logOut():
@@ -137,13 +150,13 @@ def main():
 #f8768ce8edbd17afe00ec7f576c0da42867a1a8dc44de3184c6a36f68bd8747f
 def test():
         
-    access_token = Client.get_access_token(username="Peter-Jiang-8", password="Tigers1614!");
-    #access_token = "4fa83ce2e92005ff3c3c5d3398d256d356897686ded129c8340af93a55dffd29"
+    #access_token = Client.get_access_token(username="Peter-Jiang-8", password="Tigers1614!");
+    access_token = "86e4ac9bcafc16b0c9df24655542bfaeba8dadf336a45a4388f69114ca550c13"
     
     venmo = Client(access_token=access_token)
 
-    #venmo.log_out("Bearer 4fa83ce2e92005ff3c3c5d3398d256d356897686ded129c8340af93a55dffd29")
-
+    venmo.log_out("Bearer 86e4ac9bcafc16b0c9df24655542bfaeba8dadf336a45a4388f69114ca550c13")
+    return
     """
     users = venmo.user.search_for_users(query="Peter");
     for user in users:
