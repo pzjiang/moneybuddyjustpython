@@ -4,8 +4,6 @@ import plotly.graph_objects as go
 import pandas as pd
 import tkinter as tk
 import tkinter.font as font
-
-from tkinter import messagebox
 from functools import partial
 from graphics import *
 
@@ -16,25 +14,24 @@ def submit(username1, password1, access_token):
     try:
         Client.get_access_token(username=username1, password=password1)
     except:
-        messagebox.showerror(title="Login Error", message="Invalid credentials, please try again :(")
+        print("invalid credentials")
         return "F"
 
     window = GraphWin("Analysis",1200,800)  
     
 
     
-    return
+    return venmo1
 
-
+#315ee5d2cec5ee32a91d4537f9ccd36a93c528be698e87cc7e4cb606f2f022db
 def main():
 
     access_token = ""
     venmo = None
-
     try:
 
         def submitTemp():
-            submit(userinput.get(),passinput.get(),access_token)
+            venmo = submit(userinput.get(),passinput.get(),access_token)
 
         loginwindow = tk.Tk()
         loginwindow.title("Login Window")
@@ -80,8 +77,9 @@ def main():
     except:
         print("an error happened")
 
-    if venmo != None:
-            venmo.log_out("Bearer " + access_token)
+    
+    print("logged out")
+    venmo.log_out("Bearer " + access_token)
 
 
 
