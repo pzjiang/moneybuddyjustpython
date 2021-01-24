@@ -56,7 +56,7 @@ def submit(username1, password1):
 
     venmo1.user.get_user_transactions(user=used,callback=callback,limit=1000)
     time.sleep(5)
-    
+    venmo1.log_out("Bearer " + token)
 
     f = open("saving.txt", "r")
     Lines = f.readlines()
@@ -211,11 +211,11 @@ def main():
 def test():
         
     #access_token = Client.get_access_token(username="Peter-Jiang-8", password="Tigers1614!");
-    access_token = "3f24508e3acba8b5a00e85a857108dfdeeecf96ec98463a29401759068320690"
+    access_token = "47cb790f1d7e20ac6bf97dc9dc0e838f72f16ec04660bd388ad81baf0db7d1b0"
     
     venmo = Client(access_token=access_token)
 
-    venmo.log_out("Bearer 3f24508e3acba8b5a00e85a857108dfdeeecf96ec98463a29401759068320690")
+    venmo.log_out("Bearer 47cb790f1d7e20ac6bf97dc9dc0e838f72f16ec04660bd388ad81baf0db7d1b0")
     return
     """
     users = venmo.user.search_for_users(query="Peter");
