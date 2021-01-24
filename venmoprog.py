@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import pandas as pd
 import tkinter as tk
 import tkinter.font as font
+import time
 from tkinter import messagebox
 from functools import partial
 from graphics import *
@@ -85,21 +86,46 @@ def submit(username1, password1):
     print(total)
     print(relationdict)
 
-    window = GraphWin("Analysis",1200,800)
+    window = GraphWin("Analysis",700,400)
 
-    
-    venmo1.log_out("Bearer " + token)
-    headerText = Text(Point(300,30), 'Venmo analysis complete!')
+    headerText = Text(Point(350,60), 'Venmo analysis complete!')
     headerText.setSize(26)
-    headerText.setTextColor('blue')
+    headerText.setStyle('bold')
     headerText.draw(window)
+
+    introText = Text(Point(350, 100), "Let's get started shall we? In your past venmo transactions, you've: ")
+    introText.setSize(16)
+    introText.draw(window)
+
+    time.sleep(1.5)
+
+    mostMoneyPaidPerson = Text(Point(350, 150), "You've been paying <insert person here> a whole lot recently! ")
+    mostMoneyPaidPerson.setSize(14)
+    mostMoneyPaidPerson.draw(window)
+
+    time.sleep(1.1)
+
+    mostMoneyPaid = Text(Point(350, 175), "Looks like you've paid them <insert amount here> :o ")
+    mostMoneyPaid.setSize(14)
+    mostMoneyPaid.draw(window)
+
+    time.sleep(1.1)
+
+    mostMoneyRecievedPerson = Text(Point(350, 200), "On the other hand, <insert person here> has been paying you a ton. ")
+    mostMoneyRecievedPerson.setSize(14)
+    mostMoneyRecievedPerson.draw(window)
+
+    time.sleep(1.1)
+
+    mostMoneyRecieved = Text(Point(350, 225), "A whole <insert amount here> dollars! ")
+    mostMoneyRecieved.setSize(14)
+    mostMoneyRecieved.draw(window)
     
     
 
     
     return venmo1, token
 
-#315ee5d2cec5ee32a91d4537f9ccd36a93c528be698e87cc7e4cb606f2f022db
 def main():
 
     access_token = "hi"
@@ -113,6 +139,7 @@ def main():
     def logOut():
         messagebox.showinfo(title="Log out", message="Sucessfully logged out!")
         venmo.log_out("Bearer " + access_token)
+        #Client.log_out(access_token)
 
     def quitProgram():
         messagebox.showinfo(title="Goodbye!", message="Thanks for using! Come back again soon :)")
