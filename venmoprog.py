@@ -1,4 +1,9 @@
 from venmo_api import Client
+import plotly
+import plotly.graph_objects as go
+import pandas as pd
+import tkinter as tk
+from functools import partial
 
 def main():
         
