@@ -18,7 +18,8 @@ def submit(username1, password1, access_token):
         messagebox.showerror(title="Login Error", message="Invalid credentials, please try again :(")
         return "F"
 
-    window = GraphWin("Analysis",1200,800)  
+    window = GraphWin("Analysis",1200,800)
+    
     
 
     
@@ -32,6 +33,10 @@ def main():
 
     def submitTemp():
         venmo = submit(userinput.get(),passinput.get(),access_token)
+
+
+    def logOut():
+        venmo.log_out("Bearer " + access_token)
 
     loginwindow = tk.Tk()
     loginwindow.title("Login Window")
@@ -66,6 +71,10 @@ def main():
 
     submitButton = tk.Button(loginwindow, text="login", command= submitTemp, width = 14)
     submitButton.grid(column = 1, row = 7, sticky="N")
+
+    logButton = tk.Button(loginwindow, text="logout", command= logOut, width = 14)
+    logButton.grid(column = 1, row = 8, sticky="N")
+
     
     loginwindow.grid_rowconfigure(0, weight=1)
     loginwindow.grid_rowconfigure(7, weight=1)
