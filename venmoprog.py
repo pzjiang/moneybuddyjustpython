@@ -7,19 +7,39 @@ import tkinter.font as font
 from functools import partial
 from graphics import *
 
+def submit(username1, password1, access_token):
+    venmo = None
+
+   
+    try:
+        Client.get_access_token(username=username1, password=password1)
+    except:
+        print("invalid credentials")
+        return "F"
+
+    window = GraphWin("Analysis",1200,800)  
+    
+
+    
+    return
 
 
 def main():
 
+    access_token = ""
+
     def submitTemp():
-        print("hello world")
+        print(userinput.get())
+        print(passinput.get())
+        print("end test")
+        submit(userinput.get(),passinput.get(),access_token)
 
     loginwindow = tk.Tk()
     loginwindow.title("Login Window")
     loginwindow.geometry("700x400")
-    entry_font = ('Verdana', 20)
-    username = tk.StringVar(value='entry_font')
-    password = tk.StringVar(value='entry_font')
+    
+    username = tk.StringVar()
+    password = tk.StringVar()
 
     welcomelabel = tk.Label(loginwindow, text="hello and welcome to money buddy!")
     welcomelabel.config(font=("Consolas", 16))
@@ -39,8 +59,8 @@ def main():
     passinput = tk.Entry(loginwindow, width = 20, textvariable = password, font=("Consolas",12), show="*")
     passinput.grid(column=2, row = 3, sticky="ne")
 
-    submit = tk.Button(loginwindow, text="login", command= submitTemp, width = 14)
-    submit.grid(column = 2, row = 4, sticky="ne")
+    submitButton = tk.Button(loginwindow, text="login", command= submitTemp, width = 14)
+    submitButton.grid(column = 2, row = 4, sticky="ne")
     
     loginwindow.grid_rowconfigure(0, weight=1)
     loginwindow.grid_rowconfigure(3, weight=1)
