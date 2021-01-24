@@ -55,7 +55,7 @@ def submit(username1, password1):
     """
 
     venmo1.user.get_user_transactions(user=used,callback=callback,limit=1000)
-    time.sleep(500)
+    time.sleep(8)
     
 
     f = open("saving.txt", "r")
@@ -204,7 +204,7 @@ def main():
 
 
 
-main()
+#main()
 
 
 #f8768ce8edbd17afe00ec7f576c0da42867a1a8dc44de3184c6a36f68bd8747f
