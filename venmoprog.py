@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import pandas as pd
 import tkinter as tk
 import tkinter.font as font
+from tkinter import messagebox
 from functools import partial
 from graphics import *
 
