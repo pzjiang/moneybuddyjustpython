@@ -60,7 +60,10 @@ def submit(username1, password1):
 
     window = GraphWin("Analysis",1200,800)
 
-    
+    headerText = Text(Point(300,30), 'Venmo analysis complete!')
+    headerText.setSize(26)
+    headerText.setTextColor('blue')
+    headerText.draw(window)
     
     
 
@@ -83,6 +86,7 @@ def main():
         venmo.log_out("Bearer " + access_token)
 
     def quitProgram():
+        messagebox.showinfo(title="Goodbye!", message="Thanks for using! Come back again soon :)")
         loginwindow.destroy()
         exit()
 
@@ -144,7 +148,7 @@ def main():
 
 
 
-#main()
+main()
 
 
 #f8768ce8edbd17afe00ec7f576c0da42867a1a8dc44de3184c6a36f68bd8747f
