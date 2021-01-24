@@ -54,6 +54,11 @@ def submit(username1, password1):
     transactions_list = venmo1.user.get_user_transactions(user=used,callback=callback,limit=1000)
     
 
+    f = open("saving.txt", "r")
+    Lines = f.readLines()
+
+    for line in Lines:
+        linesplit = line.split()
     
     print(total)
     print(relationdict)
@@ -61,7 +66,7 @@ def submit(username1, password1):
     window = GraphWin("Analysis",1200,800)
 
     
-    
+    venmo1.log_out("Bearer " + token)
     
 
     
@@ -144,7 +149,7 @@ def main():
 
 
 
-#main()
+main()
 
 
 #f8768ce8edbd17afe00ec7f576c0da42867a1a8dc44de3184c6a36f68bd8747f
