@@ -37,39 +37,36 @@ def main():
             print("end test")
             submit(userinput.get(),passinput.get(),access_token)
 
-        loginwindow = tk.Tk()
-        loginwindow.title("Login Window")
-        loginwindow.geometry("700x400")
-        
-        username = tk.StringVar()
-        password = tk.StringVar()
+    welcomelabel = tk.Label(loginwindow, text="hello and welcome to money buddy!")
+    welcomelabel.config(font=("Consolas", 26))
+    welcomelabel.grid(column = 1, row = 1, sticky="NESW")
 
-        welcomelabel = tk.Label(loginwindow, text="hello and welcome to money buddy!")
-        welcomelabel.config(font=("Consolas", 16))
-        welcomelabel.grid(column = 1, row = 1, sticky="NESW")
+    loginPromptLabel = tk.Label(loginwindow, text="Please login to your venmo :) we will not steal your data, pinky swear")
+    loginPromptLabel.config(font=("Consolas", 10))
+    loginPromptLabel.grid(column = 1, row = 2, sticky="NESW")
 
-        userlabel = tk.Label(loginwindow, text="Username:  ",width = 14)
-        userlabel.config(font=("Consolas",16))
-        userlabel.grid(column=1, row=2, sticky="w")
+    userlabel = tk.Label(loginwindow, text="Username:  ",width = 14)
+    userlabel.config(font=("Consolas",16))
+    userlabel.grid(column=1, row=4, sticky="w")
 
-        userinput = tk.Entry(loginwindow, width = 20, textvariable = username, font=("Consolas",12))
-        userinput.grid(column=2, row=2, sticky="e")
+    userinput = tk.Entry(loginwindow, width = 20, textvariable = username, font=("Consolas",12))
+    userinput.grid(column=1, row=4, sticky="ne")
 
-        passlabel = tk.Label(loginwindow, text = "Password:  ", width = 14)
-        passlabel.config(font=("Consolas", 16))
-        passlabel.grid(column=1, row = 3, sticky="nw")
-        
-        passinput = tk.Entry(loginwindow, width = 20, textvariable = password, font=("Consolas",12), show="*")
-        passinput.grid(column=2, row = 3, sticky="ne")
+    passlabel = tk.Label(loginwindow, text = "Password:  ", width = 14)
+    passlabel.config(font=("Consolas", 16))
+    passlabel.grid(column=1, row = 5, sticky="nw")
+    
+    passinput = tk.Entry(loginwindow, width = 20, textvariable = password, font=("Consolas",12), show="*")
+    passinput.grid(column=1, row = 5, sticky="ne")
 
-        submitButton = tk.Button(loginwindow, text="login", command= submitTemp, width = 14)
-        submitButton.grid(column = 2, row = 4, sticky="ne")
-        
-        loginwindow.grid_rowconfigure(0, weight=1)
-        loginwindow.grid_rowconfigure(3, weight=1)
-        loginwindow.grid_columnconfigure(0, weight=1)
-        loginwindow.grid_columnconfigure(3, weight=1)
-        
+    submitButton = tk.Button(loginwindow, text="login", command= submitTemp, width = 14)
+    submitButton.grid(column = 1, row = 7, sticky="N")
+    
+    loginwindow.grid_rowconfigure(0, weight=1)
+    loginwindow.grid_rowconfigure(7, weight=1)
+    loginwindow.grid_columnconfigure(0, weight=1)
+    loginwindow.grid_columnconfigure(7, weight=1)
+    
 
         loginwindow.mainloop()
     except:
