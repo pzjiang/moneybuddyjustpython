@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import pandas as pd
 import tkinter as tk
 import tkinter.font as font
+from tkinter import messagebox
 from functools import partial
 from graphics import *
 
@@ -14,7 +15,7 @@ def submit(username1, password1, access_token):
     try:
         Client.get_access_token(username=username1, password=password1)
     except:
-        print("invalid credentials")
+        messagebox.showerror(title="Login Error", message="Invalid credentials, please try again :(")
         return "F"
 
     window = GraphWin("Analysis",1200,800)  
