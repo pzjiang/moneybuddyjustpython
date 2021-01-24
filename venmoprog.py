@@ -55,7 +55,7 @@ def submit(username1, password1):
     """
 
     venmo1.user.get_user_transactions(user=used,callback=callback,limit=1000)
-    time.sleep(8)
+    time.sleep(5)
     
 
     f = open("saving.txt", "r")
@@ -65,22 +65,22 @@ def submit(username1, password1):
     for line in Lines:
         linesplit = line.split()
         valueMul = 1
-        print(linesplit)
-        print("\n")
+        #print(linesplit)
+        #print("\n")
         if linesplit[0] == "pay":
             valueMul = -1
         if linesplit[2] == used.username:
-            total -= valueMul * int(linesplit[1])
+            total -= valueMul * float(linesplit[1])
             if linesplit[3] in relationdict:
-                relationdict[linesplit[3]] -= int(linesplit[1]) * valueMul
+                relationdict[linesplit[3]] -= float(linesplit[1]) * valueMul
             else:
-                relationdict[linesplit[3]] = 0 - int(linesplit[1]) * valueMul
+                relationdict[linesplit[3]] = 0 - float(linesplit[1]) * valueMul
         else:
-            total += valueMul * int(linesplit[1])
+            total += valueMul * float(linesplit[1])
             if linesplit[2] in relationdict:
-                relationdict[linesplit[2]] += int(linesplit[1]) * valueMul
+                relationdict[linesplit[2]] += float(linesplit[1]) * valueMul
             else:
-                relationdict[linesplit[2]] = int(linesplit[1]) * valueMul
+                relationdict[linesplit[2]] = float(linesplit[1]) * valueMul
         
     
     print(total)
@@ -211,11 +211,11 @@ def main():
 def test():
         
     #access_token = Client.get_access_token(username="Peter-Jiang-8", password="Tigers1614!");
-    access_token = "7f0995d5e5f4c3968e9678fe682d64362b7e35c09a927001224ca98bddc3080a"
+    access_token = "3f24508e3acba8b5a00e85a857108dfdeeecf96ec98463a29401759068320690"
     
     venmo = Client(access_token=access_token)
 
-    venmo.log_out("Bearer 7f0995d5e5f4c3968e9678fe682d64362b7e35c09a927001224ca98bddc3080a")
+    venmo.log_out("Bearer 3f24508e3acba8b5a00e85a857108dfdeeecf96ec98463a29401759068320690")
     return
     """
     users = venmo.user.search_for_users(query="Peter");
