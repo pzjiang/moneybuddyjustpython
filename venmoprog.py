@@ -56,11 +56,14 @@ def submit(username1, password1):
     
 
     f = open("saving.txt", "r")
-    Lines = f.readLines()
+    Lines = f.readlines()
     valueMul = 1
+    print(len(Lines))
     for line in Lines:
         linesplit = line.split()
         valueMul = 1
+        print(linesplit)
+        print("\n")
         if linesplit[0] == "pay":
             valueMul = -1
         if linesplit[2] == used.username:
@@ -179,11 +182,11 @@ main()
 def test():
         
     #access_token = Client.get_access_token(username="Peter-Jiang-8", password="Tigers1614!");
-    access_token = "f140898268d4e550b00947d45904c6924c922eb6c84cf829b6aa65065c947c13"
+    access_token = "405ee219c3b186d619b20b3157a82368be53938249df36bd095dabb8b71733e7"
     
     venmo = Client(access_token=access_token)
 
-    venmo.log_out("Bearer f140898268d4e550b00947d45904c6924c922eb6c84cf829b6aa65065c947c13")
+    venmo.log_out("Bearer 405ee219c3b186d619b20b3157a82368be53938249df36bd095dabb8b71733e7")
     return
     """
     users = venmo.user.search_for_users(query="Peter");
