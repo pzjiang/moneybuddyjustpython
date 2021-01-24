@@ -14,11 +14,15 @@ def main():
     loginwindow = tk.Tk()
     loginwindow.title("Login Window")
     loginwindow.geometry("700x400")
-    username = tk.StringVar()
+    entry_font = ('Verdana', 20)
+    username = tk.StringVar(value='entry_font')
 
-    userlabel = tk.Label(loginwindow, text="Username:  ",width = 20)
-    userlabel.config(font=("Consolas",20))
+    userlabel = tk.Label(loginwindow, text="Username:  ",width = 14)
+    userlabel.config(font=("Consolas",16))
     userlabel.grid(column=1, row=1)
+    userinput = tk.Entry(loginwindow, width = 20, textvariable = username)
+    userinput.grid(column=1, row=2, padx=5, pady=10, ipady = 7)
+    
 
     loginwindow.mainloop()
 
