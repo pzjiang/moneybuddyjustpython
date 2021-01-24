@@ -8,14 +8,15 @@ from tkinter import messagebox
 from functools import partial
 from graphics import *
 
-total=[0]
-relationdict = {}
+
 
 def submit(username1, password1):
     venmo1 = None
 
     token = ""
 
+    total=0
+    relationdict = {}   
    
     try:
         token = Client.get_access_token(username=username1, password=password1)
@@ -56,9 +57,25 @@ def submit(username1, password1):
 
     f = open("saving.txt", "r")
     Lines = f.readLines()
-
+    valueMul = 1
     for line in Lines:
         linesplit = line.split()
+        valueMul = 1
+        if linesplit[0] == "pay":
+            valueMul = -1
+        if linesplit[2] == used.username:
+            total -= valueMul * int(linesplit[1])
+            if linesplit[3] in relationdict:
+                relationdict[linesplit[3]] -= int(linesplit[1]) * valueMul
+            else:
+                relationdict[linesplit[3]] = 0 - int(linesplit[1]) * valueMul
+        else:
+            total += valueMul * int(linesplit[1])
+            if linesplit[2] in relationdict:
+                relationdict[linesplit[2]] += int(linesplit[1]) * valueMul
+            else:
+                relationdict[linesplit[2]] = int(linesplit[1]) * valueMul
+        
     
     print(total)
     print(relationdict)
