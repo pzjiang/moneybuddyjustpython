@@ -67,6 +67,11 @@ def submit(username1, password1):
 
     
     venmo1.log_out("Bearer " + token)
+    headerText = Text(Point(300,30), 'Venmo analysis complete!')
+    headerText.setSize(26)
+    headerText.setTextColor('blue')
+    headerText.draw(window)
+    
     
 
     
@@ -88,6 +93,7 @@ def main():
         venmo.log_out("Bearer " + access_token)
 
     def quitProgram():
+        messagebox.showinfo(title="Goodbye!", message="Thanks for using! Come back again soon :)")
         loginwindow.destroy()
         exit()
 
