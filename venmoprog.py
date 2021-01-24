@@ -21,15 +21,18 @@ def submit(username1, password1):
     relationdict = {}   
    
     try:
+        #if login information is valid, get the access token from the server
         token = Client.get_access_token(username=username1, password=password1)
         venmo1 = Client(access_token = token)
     except:
+        #pop up box for login error
         messagebox.showerror(title="Login Error", message="Invalid credentials, please try again :(")
         return None, "F"
 
 
     
     try:
+        #get the user's profile information and transaction history
         used = venmo1.user.get_my_profile()
     except:
         print("error on used")
@@ -86,6 +89,7 @@ def submit(username1, password1):
     print(total)
     print(relationdict)
 
+    #creating graphics window for venmo analysis
     window = GraphWin("Analysis",700,400)
 
     headerText = Text(Point(350,60), 'Venmo analysis complete!')
@@ -135,17 +139,19 @@ def main():
     def submitTemp():
         venmo,access_token = submit(userinput.get(),passinput.get())
 
-
+    #log out function for when the user is done looking at their information
     def logOut():
         messagebox.showinfo(title="Log out", message="Sucessfully logged out!")
         venmo.log_out("Bearer " + access_token)
         #Client.log_out(access_token)
 
+    #quits the program: closes application window and stops running file
     def quitProgram():
         messagebox.showinfo(title="Goodbye!", message="Thanks for using! Come back again soon :)")
         loginwindow.destroy()
         exit()
 
+    #creating login window
     loginwindow = tk.Tk()
     loginwindow.title("Home")
     loginwindow.geometry("700x400")
@@ -153,8 +159,7 @@ def main():
     username = tk.StringVar()
     password = tk.StringVar()
 
-    
-
+    #welcome text
     welcomelabel = tk.Label(loginwindow, text="hello and welcome to money buddy!")
     welcomelabel.config(font=("Consolas", 26))
     welcomelabel.grid(column = 1, row = 1, sticky="N")
@@ -163,36 +168,43 @@ def main():
     loginPromptLabel.config(font=("Consolas", 10))
     loginPromptLabel.grid(column = 1, row = 2, sticky="N")
 
+    #prompts user to login
     userlabel = tk.Label(loginwindow, text="Username:  ",width = 14)
     userlabel.config(font=("Consolas",16))
     userlabel.grid(column=1, row=4, sticky="SW")
-
+    
+    #recieves user login input
     userinput = tk.Entry(loginwindow, width = 20, textvariable = username, font=("Consolas",12))
     userinput.grid(column=1, row=4, sticky="ES")
 
+    #prompts user for password
     passlabel = tk.Label(loginwindow, text = "Password:  ", width = 14)
     passlabel.config(font=("Consolas", 16))
     passlabel.grid(column=1, row = 5, sticky="nw")
     
+    #recieves user password
     passinput = tk.Entry(loginwindow, width = 20, textvariable = password, font=("Consolas",12), show="*")
     passinput.grid(column=1, row = 5, sticky="ne")
 
+    #submit login information
     submitButton = tk.Button(loginwindow, text="login", command= submitTemp, width = 14)
     submitButton.grid(column = 1, row = 7, sticky = "W")
 
+    #logout button
     logButton = tk.Button(loginwindow, text="logout", command = logOut, width = 14)
     logButton.grid(column = 1, row = 7)
 
+    #exits the application
     exitButton = tk.Button(loginwindow, text="exit", command=quitProgram, width=14)
     exitButton.grid(column = 1, row = 7, sticky = "E")
 
-    
+    #configures the window grid so the labels can be positioned
     loginwindow.grid_rowconfigure(0, weight=1)
     loginwindow.grid_rowconfigure(8, weight=1)
     loginwindow.grid_columnconfigure(0, weight=1)
     loginwindow.grid_columnconfigure(7, weight=1)
     
-
+    #run the window
     loginwindow.mainloop()
 
 
