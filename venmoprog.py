@@ -3,9 +3,32 @@ import plotly
 import plotly.graph_objects as go
 import pandas as pd
 import tkinter as tk
+import tkinter.font as font
 from functools import partial
+from graphics import *
+
+
+
 
 def main():
+    loginwindow = tk.Tk()
+    loginwindow.title("Login Window")
+    loginwindow.geometry("700x400")
+    username = tk.StringVar()
+
+    userlabel = tk.Label(loginwindow, text="Username:  ",width = 20)
+    userlabel.config(font=("Consolas",20))
+    userlabel.grid(column=1, row=1)
+
+    loginwindow.mainloop()
+
+
+
+
+
+main()
+
+def test():
         
     access_token = Client.get_access_token(username="", password="");
 
