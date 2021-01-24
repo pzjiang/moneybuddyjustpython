@@ -83,7 +83,6 @@ def main():
         venmo.log_out("Bearer " + access_token)
 
     def quitProgram():
-        messagebox.showinfo(title="Thank you!", message ="Thanks for using! come back again :)")
         loginwindow.destroy()
         exit()
 
@@ -152,11 +151,11 @@ def main():
 def test():
         
     #access_token = Client.get_access_token(username="Peter-Jiang-8", password="Tigers1614!");
-    access_token = "86e4ac9bcafc16b0c9df24655542bfaeba8dadf336a45a4388f69114ca550c13"
+    access_token = "f140898268d4e550b00947d45904c6924c922eb6c84cf829b6aa65065c947c13"
     
     venmo = Client(access_token=access_token)
 
-    venmo.log_out("Bearer 86e4ac9bcafc16b0c9df24655542bfaeba8dadf336a45a4388f69114ca550c13")
+    venmo.log_out("Bearer f140898268d4e550b00947d45904c6924c922eb6c84cf829b6aa65065c947c13")
     return
     """
     users = venmo.user.search_for_users(query="Peter");
