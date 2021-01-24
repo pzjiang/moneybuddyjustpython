@@ -76,7 +76,9 @@ def main():
 
         loginwindow.mainloop()
     except:
-        if venmo != None:
+        print("an error happened")
+
+    if venmo != None:
             venmo.log_out("Bearer " + access_token)
 
 
