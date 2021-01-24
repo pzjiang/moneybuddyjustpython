@@ -7,6 +7,7 @@ import tkinter.font as font
 from tkinter import messagebox
 from functools import partial
 from graphics import *
+import time
 
 
 
@@ -52,7 +53,8 @@ def submit(username1, password1):
     print("==-==-=-=-=-=");
     """
 
-    transactions_list = venmo1.user.get_user_transactions(user=used,callback=callback,limit=1000)
+    venmo1.user.get_user_transactions(user=used,callback=callback,limit=1000)
+    time.sleep(500)
     
 
     f = open("saving.txt", "r")
@@ -182,11 +184,11 @@ main()
 def test():
         
     #access_token = Client.get_access_token(username="Peter-Jiang-8", password="Tigers1614!");
-    access_token = "405ee219c3b186d619b20b3157a82368be53938249df36bd095dabb8b71733e7"
+    access_token = "7f0995d5e5f4c3968e9678fe682d64362b7e35c09a927001224ca98bddc3080a"
     
     venmo = Client(access_token=access_token)
 
-    venmo.log_out("Bearer 405ee219c3b186d619b20b3157a82368be53938249df36bd095dabb8b71733e7")
+    venmo.log_out("Bearer 7f0995d5e5f4c3968e9678fe682d64362b7e35c09a927001224ca98bddc3080a")
     return
     """
     users = venmo.user.search_for_users(query="Peter");
