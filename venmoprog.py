@@ -36,10 +36,15 @@ def main():
 
 
     def logOut():
+        messagebox.showinfo(title="Log out", message="Sucessfully logged out!")
         venmo.log_out("Bearer " + access_token)
 
+    def quitProgram():
+        loginwindow.destroy()
+        exit()
+
     loginwindow = tk.Tk()
-    loginwindow.title("Login Window")
+    loginwindow.title("Home")
     loginwindow.geometry("700x400")
     
     username = tk.StringVar()
@@ -49,18 +54,18 @@ def main():
 
     welcomelabel = tk.Label(loginwindow, text="hello and welcome to money buddy!")
     welcomelabel.config(font=("Consolas", 26))
-    welcomelabel.grid(column = 1, row = 1, sticky="NESW")
+    welcomelabel.grid(column = 1, row = 1, sticky="N")
 
     loginPromptLabel = tk.Label(loginwindow, text="Please login to your venmo :) we will not steal your data, pinky swear")
     loginPromptLabel.config(font=("Consolas", 10))
-    loginPromptLabel.grid(column = 1, row = 2, sticky="NESW")
+    loginPromptLabel.grid(column = 1, row = 2, sticky="N")
 
     userlabel = tk.Label(loginwindow, text="Username:  ",width = 14)
     userlabel.config(font=("Consolas",16))
-    userlabel.grid(column=1, row=4, sticky="w")
+    userlabel.grid(column=1, row=4, sticky="SW")
 
     userinput = tk.Entry(loginwindow, width = 20, textvariable = username, font=("Consolas",12))
-    userinput.grid(column=1, row=4, sticky="ne")
+    userinput.grid(column=1, row=4, sticky="ES")
 
     passlabel = tk.Label(loginwindow, text = "Password:  ", width = 14)
     passlabel.config(font=("Consolas", 16))
@@ -70,14 +75,17 @@ def main():
     passinput.grid(column=1, row = 5, sticky="ne")
 
     submitButton = tk.Button(loginwindow, text="login", command= submitTemp, width = 14)
-    submitButton.grid(column = 1, row = 7, sticky="N")
+    submitButton.grid(column = 1, row = 7, sticky = "W")
 
-    logButton = tk.Button(loginwindow, text="logout", command= logOut, width = 14)
-    logButton.grid(column = 1, row = 8, sticky="N")
+    logButton = tk.Button(loginwindow, text="logout", command = logOut, width = 14)
+    logButton.grid(column = 1, row = 7)
+
+    exitButton = tk.Button(loginwindow, text="exit", command=quitProgram, width=14)
+    exitButton.grid(column = 1, row = 7, sticky = "E")
 
     
     loginwindow.grid_rowconfigure(0, weight=1)
-    loginwindow.grid_rowconfigure(7, weight=1)
+    loginwindow.grid_rowconfigure(8, weight=1)
     loginwindow.grid_columnconfigure(0, weight=1)
     loginwindow.grid_columnconfigure(7, weight=1)
     
