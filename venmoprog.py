@@ -40,6 +40,7 @@ def main():
         venmo.log_out("Bearer " + access_token)
 
     def quitProgram():
+        messagebox.showinfo(title="Thank you!", message ="Thanks for using! come back again :)")
         loginwindow.destroy()
         exit()
 
