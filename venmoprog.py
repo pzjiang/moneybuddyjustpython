@@ -9,8 +9,11 @@ from graphics import *
 
 
 
-
 def main():
+
+    def submitTemp():
+        print("hello world")
+
     loginwindow = tk.Tk()
     loginwindow.title("Login Window")
     loginwindow.geometry("700x400")
@@ -19,21 +22,30 @@ def main():
     password = tk.StringVar(value='entry_font')
 
     welcomelabel = tk.Label(loginwindow, text="hello and welcome to money buddy!")
-    welcomelabel.grid(column = 1, row = 1)
+    welcomelabel.config(font=("Consolas", 16))
+    welcomelabel.grid(column = 1, row = 1, sticky="NESW")
 
     userlabel = tk.Label(loginwindow, text="Username:  ",width = 14)
     userlabel.config(font=("Consolas",16))
-    userlabel.grid(column=1, row=2)
+    userlabel.grid(column=1, row=2, sticky="w")
+
     userinput = tk.Entry(loginwindow, width = 20, textvariable = username, font=("Consolas",12))
-    userinput.grid(column=2, row=2)
+    userinput.grid(column=2, row=2, sticky="e")
 
     passlabel = tk.Label(loginwindow, text = "Password:  ", width = 14)
     passlabel.config(font=("Consolas", 16))
-    passlabel.grid(column=1, row = 3)
+    passlabel.grid(column=1, row = 3, sticky="nw")
     
     passinput = tk.Entry(loginwindow, width = 20, textvariable = password, font=("Consolas",12), show="*")
-    passinput.grid(column=2, row = 3)
+    passinput.grid(column=2, row = 3, sticky="ne")
+
+    submit = tk.Button(loginwindow, text="login", command= submitTemp, width = 14)
+    submit.grid(column = 2, row = 4, sticky="ne")
     
+    loginwindow.grid_rowconfigure(0, weight=1)
+    loginwindow.grid_rowconfigure(3, weight=1)
+    loginwindow.grid_columnconfigure(0, weight=1)
+    loginwindow.grid_columnconfigure(3, weight=1)
     
 
     loginwindow.mainloop()
